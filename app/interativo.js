@@ -82,24 +82,42 @@ export function Contador({ ate, sufixo = '', prefixo = '', casas = 0 }) {
   useEffect(() => {
     const no = ref.current
     if (!no) return
+    let rodou = false
+
+    const contar = () => {
+      if (rodou) return
+      rodou = true
+      const duracao = 1500
+      const inicio = performance.now()
+      const passo = (agora) => {
+        const t = Math.min((agora - inicio) / duracao, 1)
+        const suave = 1 - Math.pow(1 - t, 3)
+        setValor(ate * suave)
+        if (t < 1) requestAnimationFrame(passo)
+      }
+      requestAnimationFrame(passo)
+    }
+
     const obs = new IntersectionObserver(
       ([e]) => {
         if (!e.isIntersecting) return
         obs.disconnect()
-        const duracao = 1500
-        const inicio = performance.now()
-        const passo = (agora) => {
-          const t = Math.min((agora - inicio) / duracao, 1)
-          const suave = 1 - Math.pow(1 - t, 3)
-          setValor(ate * suave)
-          if (t < 1) requestAnimationFrame(passo)
-        }
-        requestAnimationFrame(passo)
+        contar()
       },
       { threshold: 0.6 },
     )
     obs.observe(no)
-    return () => obs.disconnect()
+
+    // Rede de segurança: se por qualquer motivo o observador não disparar,
+    // o número aparece do mesmo jeito em vez de ficar parado em zero.
+    const rede = setTimeout(() => {
+      if (!rodou) setValor(ate)
+    }, 2500)
+
+    return () => {
+      obs.disconnect()
+      clearTimeout(rede)
+    }
   }, [ate])
 
   const mostrado = casas

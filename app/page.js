@@ -76,7 +76,7 @@ export default function Pagina() {
 
               <h1>
                 <span className="linha-mascara">
-                  <span style={{ '--atraso': '80ms' }}>Emagrecer para</span>
+                  <span style={{ '--atraso': '80ms' }}>Emagrecer deixa</span>
                 </span>
                 <span className="linha-mascara">
                   <span style={{ '--atraso': '180ms' }}>de ser um projeto</span>
@@ -155,23 +155,23 @@ export default function Pagina() {
                     {[
                       {
                         n: 'Café da manhã',
-                        d: 'ovos mexidos, pão integral',
+                        d: 'ovos e pão integral',
                         k: '380',
-                        i: `${IMG}/photo-1512621776951-a57141f2eefd?w=120&h=120&fit=crop&q=80`,
+                        i: `${IMG}/photo-1498837167922-ddd27525d352?w=120&h=120&fit=crop&q=80`,
                         atraso: '600ms',
                       },
                       {
                         n: 'Almoço',
-                        d: 'no restaurante do trabalho',
+                        d: 'no trabalho',
                         k: '640',
                         i: `${IMG}/photo-1490645935967-10de6ba17061?w=120&h=120&fit=crop&q=80`,
                         atraso: '760ms',
                       },
                       {
                         n: 'Jantar sugerido',
-                        d: 'ajustado ao seu almoço',
+                        d: 'ajustado ao almoço',
                         k: '520',
-                        i: `${IMG}/photo-1498837167922-ddd27525d352?w=120&h=120&fit=crop&q=80`,
+                        i: `${IMG}/photo-1512621776951-a57141f2eefd?w=120&h=120&fit=crop&q=80`,
                         atraso: '920ms',
                       },
                     ].map((m) => (
